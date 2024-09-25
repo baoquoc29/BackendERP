@@ -1,7 +1,7 @@
 package com.example.vinasoy.service.employees;
 import com.example.vinasoy.dto.employee.DepartmentDTO;
-import com.example.vinasoy.dto.exception.AppException;
-import com.example.vinasoy.dto.exception.ErrorCode;
+import com.example.vinasoy.exception.AppException;
+import com.example.vinasoy.exception.ErrorCode;
 import com.example.vinasoy.entity.employee.Department;
 import com.example.vinasoy.repository.employees.DepartmentRepository;
 import jakarta.persistence.EntityNotFoundException;

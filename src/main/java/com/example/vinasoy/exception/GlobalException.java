@@ -1,4 +1,4 @@
-package com.example.vinasoy.dto.exception;
+package com.example.vinasoy.exception;
 import com.example.vinasoy.dto.employee.ApiResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

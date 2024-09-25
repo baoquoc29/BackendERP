@@ -1,20 +1,12 @@
 package com.example.vinasoy.exception;
 
-public class AppException extends RuntimeException {
+import lombok.Data;
+
+@Data
+public class AppException extends RuntimeException{
     private ErrorCode errorCode;
-
-    public AppException() {}
-
-    public AppException(ErrorCode errorCode) {
+    public AppException(ErrorCode errorCode){
         super(errorCode.getMessage());
-        this.errorCode = errorCode;
-    }
-
-    public ErrorCode getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(ErrorCode errorCode) {
-        this.errorCode = errorCode;
+        this.errorCode=errorCode;
     }
 }

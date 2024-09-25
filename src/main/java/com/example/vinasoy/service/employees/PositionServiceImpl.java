@@ -1,14 +1,13 @@
 package com.example.vinasoy.service.employees;
 import com.example.vinasoy.dto.employee.PositionsDTO;
-import com.example.vinasoy.dto.exception.AppException;
-import com.example.vinasoy.dto.exception.ErrorCode;
+import com.example.vinasoy.exception.AppException;
+import com.example.vinasoy.exception.ErrorCode;
 import com.example.vinasoy.entity.employee.Allowance;
 import com.example.vinasoy.entity.employee.Position;
 import com.example.vinasoy.repository.employees.AllowanceRepository;
 import com.example.vinasoy.repository.employees.PositionRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
