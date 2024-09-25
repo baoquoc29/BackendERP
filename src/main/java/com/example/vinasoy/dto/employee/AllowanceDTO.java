@@ -7,5 +7,4 @@ import java.math.BigDecimal;
 public class AllowanceDTO {
     private String allowanceId;
     private BigDecimal amount;
-
 }

@@ -7,9 +7,9 @@ import java.time.LocalDate;
 @Data
 public class EmployeeDTO {
     private String employeeId;
-    private String positionId;
-    private String departmentId;
-    private String workShiftId;
+    private PositionsDTO position;
+    private DepartmentDTO department;
+    private WorkshiftDTO workShift;
     private String employeeName;
     private LocalDate birthday;
     private String phoneNumber;
@@ -17,5 +17,4 @@ public class EmployeeDTO {
     private String cccd;
     private String address;
     private String employeeStatus;
-
 }
