@@ -11,13 +11,21 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "employee")
 public class Employee {
+
     @Id
     @Column(name = "EmployeeID", nullable = false, length = 10)
     private String employeeID;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DepartmentID")
-    private Department departmentID;
+    private Department department;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PositionID")
+    private Position position;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WorkShiftID")
+    private Workshift workshift;
 
     @Column(name = "EmployeeName")
     private String employeeName;

@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class PositionsDTO {
     private String positionId;
-    private String allowanceId;
+    private AllowanceDTO allowance;
     private String namePosition;
-
 }
