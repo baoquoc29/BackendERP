@@ -1,5 +1,5 @@
 package com.example.vinasoy.exception;
-import com.example.vinasoy.dto.employee.ApiResponse;
+import com.example.vinasoy.response.ApiResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
