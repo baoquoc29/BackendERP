@@ -1,10 +1,9 @@
 package com.example.vinasoy.controller.employeeController;
 
 import com.example.vinasoy.dto.employee.DepartmentDTO;
-import com.example.vinasoy.dto.employee.ApiResponse;
+import com.example.vinasoy.response.ApiResponse;
 import com.example.vinasoy.entity.employee.Department;
 import com.example.vinasoy.service.employees.DepartmentService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
