@@ -1,4 +1,4 @@
-package com.example.vinasoy.dto.employee;
+package com.example.vinasoy.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -8,5 +8,4 @@ public class ApiResponse<T>{
     private int code;
     private String message;
     private T result;
-
 }

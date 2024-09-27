@@ -1,6 +1,5 @@
 package com.example.vinasoy.controller.employeeController;
-import com.example.vinasoy.dto.employee.ApiResponse;
-import com.example.vinasoy.dto.employee.DepartmentDTO;
+import com.example.vinasoy.response.ApiResponse;
 import com.example.vinasoy.dto.employee.PositionsDTO;
 import com.example.vinasoy.entity.employee.Department;
 import com.example.vinasoy.service.employees.PositionService;
