@@ -1,9 +1,7 @@
 package com.example.vinasoy.entity.employee;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +14,13 @@ import java.time.LocalDate;
 @Table(name = "contract")
 public class Contract {
     @Id
+    @Size(max = 10)
     @Column(name = "ContractID", nullable = false, length = 10)
     private String contractID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SalaryGradeScaleID")
+    private Salarygradescale salaryGradeScaleID;
 
     @Column(name = "SalaryContract", precision = 10, scale = 2)
     private BigDecimal salaryContract;
@@ -28,6 +31,7 @@ public class Contract {
     @Column(name = "EndDate")
     private LocalDate endDate;
 
+    @Size(max = 50)
     @Column(name = "ContractStatus", length = 50)
     private String contractStatus;
 

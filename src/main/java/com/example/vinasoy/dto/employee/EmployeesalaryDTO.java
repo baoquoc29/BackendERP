@@ -10,11 +10,15 @@ public class EmployeesalaryDTO {
     private String employeeId;
     private String contractId;
     private String positionId;
-    private String timeKeepingDetailId;
+    private String attendanceRecordId;
+    private BigDecimal salaryContract;
+    private BigDecimal bonus;
+    private BigDecimal forfeit;
+    private BigDecimal allowance;
+    private BigDecimal insurance;
+    private BigDecimal personalIncomeTax;
     private BigDecimal totalAmount;
     private LocalDate createdDate;
     private LocalDate updatedDate;
     private String note;
-
-
 }

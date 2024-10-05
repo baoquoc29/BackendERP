@@ -4,27 +4,30 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "department")
 public class Department {
     @Id
+    @Size(max = 10)
     @Column(name = "DepartmentID", nullable = false, length = 10)
     private String departmentID;
-    @NotNull(message = "Department name cannot be null")
+
+    @Size(max = 255)
     @Column(name = "NameDepartment")
     private String nameDepartment;
 
-    public Department(String departmentID, String nameDepartment) {
-        this.departmentID = departmentID;
-        this.nameDepartment = nameDepartment;
-    }
+    @Size(max = 255)
+    @Column(name = "AddressDepartment")
+    private String addressDepartment;
+
+    @Size(max = 15)
+    @Column(name = "PhoneDepartment", length = 15)
+    private String phoneDepartment;
 
 }

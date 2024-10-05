@@ -1,6 +1,7 @@
 package com.example.vinasoy.entity.employee;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Table(name = "employeesalary")
 public class Employeesalary {
     @Id
+    @Size(max = 10)
     @Column(name = "EmployeeSalaryID", nullable = false, length = 10)
     private String employeeSalaryID;
 
@@ -24,6 +26,28 @@ public class Employeesalary {
     @JoinColumn(name = "ContractID")
     private Contract contractID;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PositionID")
+    private Position positionID;
+
+    @Column(name = "SalaryContract", precision = 18, scale = 2)
+    private BigDecimal salaryContract;
+
+    @Column(name = "Bonus", precision = 18, scale = 2)
+    private BigDecimal bonus;
+
+    @Column(name = "Forfeit", precision = 18, scale = 2)
+    private BigDecimal forfeit;
+
+    @Column(name = "Allowance", precision = 18, scale = 2)
+    private BigDecimal allowance;
+
+    @Column(name = "Insurance", precision = 18, scale = 2)
+    private BigDecimal insurance;
+
+    @Column(name = "PersonalIncomeTax", precision = 18, scale = 2)
+    private BigDecimal personalIncomeTax;
+
     @Column(name = "TotalAmount", precision = 18, scale = 2)
     private BigDecimal totalAmount;
 
@@ -33,6 +57,7 @@ public class Employeesalary {
     @Column(name = "UpdatedDate")
     private LocalDate updatedDate;
 
+    @Size(max = 1000)
     @Column(name = "Note", length = 1000)
     private String note;
 

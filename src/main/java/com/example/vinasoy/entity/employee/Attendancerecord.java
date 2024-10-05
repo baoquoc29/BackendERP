@@ -1,19 +1,19 @@
 package com.example.vinasoy.entity.employee;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "timekeepingdetail")
-public class Timekeepingdetail {
+@Table(name = "attendancerecord")
+public class Attendancerecord {
     @Id
-    @Column(name = "TimeKeepingDetailID", nullable = false, length = 10)
-    private String timeKeepingDetailID;
+    @Size(max = 10)
+    @Column(name = "AttendanceRecordID", nullable = false, length = 10)
+    private String attendanceRecordID;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EmployeeID")
@@ -28,13 +28,10 @@ public class Timekeepingdetail {
     @Column(name = "NumberOfDaysLate")
     private Integer numberOfDaysLate;
 
-    @Column(name = "WorkingMonth")
-    private Integer workingMonth;
+    @Column(name = "WorkMonth")
+    private Integer workMonth;
 
-    @Column(name = "WorkingYear")
-    private Integer workingYear;
-
-    @Column(name = "CreatedAt")
-    private Instant createdAt;
+    @Column(name = "WorkYear")
+    private Integer workYear;
 
 }
