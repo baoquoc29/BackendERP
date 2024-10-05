@@ -7,11 +7,10 @@ import java.time.LocalDate;
 @Data
 public class ContractDTO {
     private String contractId;
-    private String employeeId;
-    private String gradeId;
-    private String salaryLevelId;
+    private String salaryGradeScaleId;
     private BigDecimal salaryContract;
     private LocalDate startDate;
     private LocalDate endDate;
     private String contractStatus;
+
 }
