@@ -10,10 +10,5 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1")
 public class TestController{
-    @Autowired
-    TestService testService;
-    @GetMapping("/test")
-    public List<Account> test(){
-        return testService.listAccounts();
-    }
+
 }
