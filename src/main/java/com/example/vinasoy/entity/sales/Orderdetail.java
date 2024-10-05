@@ -28,4 +28,8 @@ public class Orderdetail {
     @Column(name = "TotalPrice", precision = 10, scale = 2)
     private BigDecimal totalPrice;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ProductID")
+    private Product productID;
+
 }

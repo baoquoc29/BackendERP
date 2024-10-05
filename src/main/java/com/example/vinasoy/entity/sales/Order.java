@@ -1,6 +1,8 @@
 package com.example.vinasoy.entity.sales;
 
+import com.example.vinasoy.entity.employee.Employee;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,5 +34,10 @@ public class Order {
 
     @Column(name = "OrderStatus", length = 50)
     private String orderStatus;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "EmployeeID", nullable = false)
+    private Employee employeeID;
 
 }
