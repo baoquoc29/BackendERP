@@ -1,11 +1,15 @@
 package com.example.vinasoy.entity.employee;
 
+import com.example.vinasoy.entity.sales.Order;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -60,4 +64,42 @@ public class Employee {
     @Column(name = "EmployeeStatus", length = 50)
     private String employeeStatus;
 
+
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
+    @JsonManagedReference
+    private Set<Order> orders = new HashSet<>();
+
+
+    public void addOrder(Order order) {
+        if(order != null) {
+            orders.add(order);
+            order.setEmployee(this);
+        }
+    }
+
+    public void removeCar(Order order) {
+        if(order != null) {
+            orders.remove(order);
+            order.setEmployee(null);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeID='" + employeeID + '\'' +
+                ", employeeName='" + employeeName + '\'' +
+                ", birthday=" + birthday +
+                ", gender='" + gender + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", cccd='" + cccd + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
