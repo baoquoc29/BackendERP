@@ -27,7 +27,7 @@ public class CustomerService implements ICustomerService {
 
         if (maxOrderCode == null) {
             // Nếu không có mã nào trong DB, bắt đầu từ "CUST-0001"
-            return "CUST-0015";
+            return "CUST-0001";
         } else {
             // Lấy phần số từ mã hiện tại và tăng lên 1
             int maxCodeNumber = Integer.parseInt(maxOrderCode.substring(5));
@@ -85,7 +85,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public CustomerDTO findCustomerById(String customerId) {
-        Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new AppException(ErrorCode.EXITS));
+        Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new AppException(ErrorCode.NOT_EXITS));
         return modelMapper.map(customer, CustomerDTO.class);
     }
 }

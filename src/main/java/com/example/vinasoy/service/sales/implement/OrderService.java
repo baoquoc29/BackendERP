@@ -34,7 +34,7 @@ public class OrderService implements IOrderService {
 
         if (maxOrderCode == null) {
             // Nếu không có mã nào trong DB, bắt đầu từ "CUST-0001"
-            return "ORD-0015";
+            return "ORD-0001";
         } else {
             // Lấy phần số từ mã hiện tại và tăng lên 1
             int maxCodeNumber = Integer.parseInt(maxOrderCode.substring(4));
@@ -110,7 +110,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public OrderDTO findOrderById(String orderId) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new AppException(ErrorCode.EXITS));
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new AppException(ErrorCode.NOT_EXITS));
         OrderDTO orderDTO =  modelMapper.map(order, OrderDTO.class);
         orderDTO.setCustomerId(order.getCustomer().getCustomerID());
         orderDTO.setEmployeeId(order.getEmployee().getEmployeeID());
