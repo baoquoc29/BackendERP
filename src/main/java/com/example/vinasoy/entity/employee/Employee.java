@@ -1,5 +1,7 @@
 package com.example.vinasoy.entity.employee;
 
+import com.example.vinasoy.dto.sales.InvoiceDTO;
+import com.example.vinasoy.entity.sales.Invoice;
 import com.example.vinasoy.entity.sales.Order;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -82,12 +84,39 @@ public class Employee {
         }
     }
 
-    public void removeCar(Order order) {
+    public void removeOrder(Order order) {
         if(order != null) {
             orders.remove(order);
             order.setEmployee(null);
         }
     }
+
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
+    @JsonManagedReference
+    private Set<Invoice> invoices = new HashSet<>();
+
+
+    public void addInvoice(Invoice invoice) {
+        if(invoice != null) {
+            invoices.add(invoice);
+            invoice.setEmployee(this);
+        }
+    }
+
+    public void removeInvoice(Invoice invoice) {
+        if(invoice != null) {
+            invoices.remove(invoice);
+            invoice.setEmployee(null);
+        }
+    }
+
+
+
 
     @Override
     public String toString() {

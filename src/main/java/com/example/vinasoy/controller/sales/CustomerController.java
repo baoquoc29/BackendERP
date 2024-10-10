@@ -1,12 +1,10 @@
-package com.example.vinasoy.controller;
+package com.example.vinasoy.controller.sales;
 
 import com.example.vinasoy.dto.sales.ApiResponse;
 import com.example.vinasoy.dto.sales.CustomerDTO;
 import com.example.vinasoy.service.sales.implement.CustomerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

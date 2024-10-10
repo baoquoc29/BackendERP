@@ -1,9 +1,7 @@
-package com.example.vinasoy.controller;
+package com.example.vinasoy.controller.sales;
 
 import com.example.vinasoy.dto.sales.ApiResponse;
-import com.example.vinasoy.dto.sales.CustomerDTO;
 import com.example.vinasoy.dto.sales.OrderDTO;
-import com.example.vinasoy.service.sales.implement.CustomerService;
 import com.example.vinasoy.service.sales.implement.OrderService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -51,7 +49,7 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOrder(@PathVariable("id") String orderId) {
         orderService.deleteOrder(orderId.toUpperCase());
         ApiResponse<String> apiResponse = new ApiResponse<>();
