@@ -11,5 +11,4 @@ public class AttendancerecordDTO {
     private Integer numberOfDaysLate;
     private Integer workMonth;
     private Integer workYear;
-
 }

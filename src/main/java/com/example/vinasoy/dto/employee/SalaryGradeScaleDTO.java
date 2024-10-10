@@ -4,11 +4,10 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 @Data
-public class SalarygradescaleDTO {
+public class SalaryGradeScaleDTO {
     private String salaryGradeScaleId;
     private String salaryScale;
     private String salaryGradeName;
     private BigDecimal salaryAmount;
     private String status;
-
 }
