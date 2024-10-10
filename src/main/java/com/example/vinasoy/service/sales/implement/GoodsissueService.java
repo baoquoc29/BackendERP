@@ -12,7 +12,7 @@ import com.example.vinasoy.entity.sales.Invoice;
 import com.example.vinasoy.entity.sales.Order;
 import com.example.vinasoy.exception.AppException;
 import com.example.vinasoy.exception.ErrorCode;
-import com.example.vinasoy.repository.employee.EmployeeRepository;
+import com.example.vinasoy.repository.employees.EmployeeRepository;
 import com.example.vinasoy.repository.manufacture.ProductRepository;
 import com.example.vinasoy.repository.sales.IGoodsissueRepository;
 import com.example.vinasoy.service.sales.IGoodsissueService;

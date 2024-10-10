@@ -1,4 +1,4 @@
-package com.example.vinasoy.controller;
+package com.example.vinasoy.controller.employeeController;
 
 import com.example.vinasoy.dto.employee.AttendancerecordDTO;
 import com.example.vinasoy.response.ApiResponse;

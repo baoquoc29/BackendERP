@@ -8,7 +8,7 @@ import com.example.vinasoy.entity.sales.Customer;
 import com.example.vinasoy.entity.sales.Order;
 import com.example.vinasoy.exception.AppException;
 import com.example.vinasoy.exception.ErrorCode;
-import com.example.vinasoy.repository.employee.EmployeeRepository;
+import com.example.vinasoy.repository.employees.EmployeeRepository;
 import com.example.vinasoy.repository.sales.ICustomerRepository;
 import com.example.vinasoy.repository.sales.IOrderRepository;
 import com.example.vinasoy.service.sales.IOrderService;
