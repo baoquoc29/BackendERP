@@ -18,7 +18,7 @@ public class Contract {
     @Column(name = "ContractID", nullable = false, length = 10)
     private String contractID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "SalaryGradeScaleID")
     private Salarygradescale salaryGradeScaleID;
 
