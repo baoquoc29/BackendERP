@@ -11,5 +11,4 @@ public class ProductwarehouseDTO {
     private LocalDate dateOfImport;
     private String productWhStatus;
 
-
 }
