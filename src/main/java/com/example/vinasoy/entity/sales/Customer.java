@@ -48,7 +48,7 @@ public class Customer {
         }
     }
 
-    public void removeCar(Order order) {
+    public void removeOrder(Order order) {
         if(order != null) {
             orders.remove(order);
             order.setCustomer(null);

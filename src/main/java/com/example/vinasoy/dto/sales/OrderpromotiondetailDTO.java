@@ -7,5 +7,4 @@ public class OrderpromotiondetailDTO {
     private String orderPromotionDetailId;
     private String orderId;
     private String orderPromotionId;
-
 }
