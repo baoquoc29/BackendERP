@@ -1,6 +1,9 @@
 package com.example.vinasoy.repository.sales;
 
 import com.example.vinasoy.entity.sales.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,4 +14,6 @@ public interface ICustomerRepository extends JpaRepository<Customer, String> {
     String findMaxCustomerCode();
 
     boolean existsByFullNameAndPhoneNumberAndEmail(String fullName, String phone, String email);
+
+    Page<Customer> findAll(Specification<Customer> spec, Pageable pageable);
 }

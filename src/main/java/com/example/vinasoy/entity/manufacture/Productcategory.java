@@ -4,8 +4,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "productcategory")
 public class Productcategory {
@@ -19,27 +25,5 @@ public class Productcategory {
     @Column(name = "Note")
     private String note;
 
-    public String getProductCategoryId() {
-        return this.productCategoryId;
-    }
 
-    public void setProductCategoryId(String productCategoryId) {
-        this.productCategoryId = productCategoryId;
-    }
-
-    public String getProductCategoryName() {
-        return this.productCategoryName;
-    }
-
-    public void setProductCategoryName(String productCategoryName) {
-        this.productCategoryName = productCategoryName;
-    }
-
-    public String getNote() {
-        return this.note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 }

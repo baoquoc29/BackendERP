@@ -12,11 +12,13 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvoiceDTO {
+public class GoodsissueDTO {
+    private String goodsIssueId;
     private String invoiceId;
-    private String orderId;
     private String employeeId;
-    private BigDecimal totalAmount;
-    private LocalDate paymentDate;
-    private String paymentMethod;
+    private String productId;
+    private Integer quantityExported;
+    private BigDecimal exportPrice;
+    private LocalDate exportDate;
+    private String note;
 }

@@ -1,6 +1,7 @@
 package com.example.vinasoy.entity.employee;
 
 import com.example.vinasoy.dto.sales.InvoiceDTO;
+import com.example.vinasoy.entity.sales.Goodsreceipt;
 import com.example.vinasoy.entity.sales.Invoice;
 import com.example.vinasoy.entity.sales.Order;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -115,6 +116,30 @@ public class Employee {
         }
     }
 
+
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
+    @JsonManagedReference
+    private Set<Goodsreceipt> goodsreceipts = new HashSet<>();
+
+
+    public void addGoodsreceipts(Goodsreceipt goodsreceipt) {
+        if(goodsreceipt != null) {
+            goodsreceipts.add(goodsreceipt);
+            goodsreceipt.setEmployee(this);
+        }
+    }
+
+    public void removeGoodsreceipts(Goodsreceipt goodsreceipt) {
+        if(goodsreceipt != null) {
+            goodsreceipts.remove(goodsreceipt);
+            goodsreceipt.setEmployee(null);
+        }
+    }
 
 
 

@@ -63,7 +63,6 @@ public class InvoiceService implements IInvoiceService {
                 }).collect(Collectors.toList());
     }
 
-
     @Override
     @Transactional
     public InvoiceDTO addInvoice(InvoiceDTO invoiceDTO) {

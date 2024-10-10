@@ -17,6 +17,35 @@ import java.util.List;
 public class CustomerController {
     private final CustomerService customerService;
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchCustomers(
+            @RequestParam(defaultValue = "10", required = false) Integer pageSize,
+            @RequestParam(defaultValue = "0", required = false) Integer pageNo,
+            @RequestParam(required = false) String customerId,
+            @RequestParam(required = false) String fullName,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String phoneNumber,
+            @RequestParam(required = false) String address,
+            @RequestParam(defaultValue = "customerId,asc", required = false) String... sort) {
+
+        PageResponse<?> result = customerService.searchCustomers(
+                pageSize, pageNo, customerId, fullName, email, phoneNumber, address, sort);
+        ApiResponse<PageResponse<?>> apiResponse = new ApiResponse<>();
+        apiResponse.setData(result);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<?> findAllCustomer(
+            @RequestParam(defaultValue = "5", required = false) final Integer pageSize,
+            @RequestParam(defaultValue = "0", required = false) final Integer pageNo,
+            @RequestParam(defaultValue = "id", required = false) final String... sortBy) {
+        PageResponse<?> customerPageResponse = customerService.findAllPaginationWithSortByMultipleColumns(pageSize, pageNo, sortBy);
+        ApiResponse<PageResponse<?>> apiResponse = new ApiResponse<>();
+        apiResponse.setData(customerPageResponse);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
     @GetMapping
     public ResponseEntity<?> findAllCustomer() {
         List<CustomerDTO> customers = customerService.findAllCustomers();
@@ -35,18 +64,18 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<?> addCustomer(@RequestBody @Valid CustomerDTO customerRequest) {
-        CustomerDTO carTypeResponse = customerService.addCustomer(customerRequest);
+        CustomerDTO customerDTO = customerService.addCustomer(customerRequest);
         ApiResponse<CustomerDTO> apiResponse = new ApiResponse<>();
-        apiResponse.setData(carTypeResponse);
+        apiResponse.setData(customerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable("id") String id,
                                             @RequestBody @Valid CustomerDTO customerRequest) {
-        CustomerDTO carTypeResponse = customerService.updateCustomer(id.toUpperCase(), customerRequest);
+        CustomerDTO customerDTO = customerService.updateCustomer(id.toUpperCase(), customerRequest);
         ApiResponse<CustomerDTO> apiResponse = new ApiResponse<>();
-        apiResponse.setData(carTypeResponse);
+        apiResponse.setData(customerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
@@ -57,5 +86,4 @@ public class CustomerController {
         apiResponse.setData("Xoa thanh cong");
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
-
 }

@@ -43,7 +43,6 @@ public class OrderService implements IOrderService {
         }
     }
 
-
     @Override
     public List<OrderDTO> findAllOrders() {
         return orderRepository.findAll().stream()
