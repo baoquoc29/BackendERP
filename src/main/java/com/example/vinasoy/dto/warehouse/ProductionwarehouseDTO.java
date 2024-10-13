@@ -8,5 +8,4 @@ public class ProductionwarehouseDTO {
     private String semiFinishedProductId;
     private Integer quantity;
     private String productionWhStatus;
-
 }
