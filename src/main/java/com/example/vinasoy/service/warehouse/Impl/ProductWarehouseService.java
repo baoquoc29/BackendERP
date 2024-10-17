@@ -79,7 +79,9 @@ public class ProductWarehouseService implements IProductWarehouseService {
     public ProductWarehouseResponseDTO updateProductWarehouse(ProductWarehouseRequestDTO requestDTO) {
         Productwarehouse productwarehouse = repository.findById(requestDTO.getProductWarehouseId())
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
+        Product product = productRepository.findOneById(requestDTO.getProductId());
         modelMapper.map(requestDTO, productwarehouse);
+        productwarehouse.setProductID(product);
         Productwarehouse updatedProductWarehouse = repository.save(productwarehouse);
         return modelMapper.map(updatedProductWarehouse, ProductWarehouseResponseDTO.class);
     }
