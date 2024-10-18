@@ -1,8 +1,8 @@
 package com.example.vinasoy.service.manufacture.impl;
 
-import com.example.vinasoy.dto.manufacture.ProductDTO;
-import com.example.vinasoy.repository.manufacture.ProductRepository;
-import com.example.vinasoy.service.manufacture.IProductService;
+import com.example.vinasoy.dto.warehouse.MaterialDTO;
+import com.example.vinasoy.repository.warehouse.IMaterialRepository;
+import com.example.vinasoy.service.manufacture.IMaterialService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,16 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ProductService implements IProductService {
+public class MaterialService implements IMaterialService {
     @Autowired
-    private ProductRepository repository;
+    private final IMaterialRepository repository;
     private final ModelMapper modelMapper;
 
     @Override
-    public List<ProductDTO> findAll() {
+    public List<MaterialDTO> findAll() {
         return repository.findAll().stream()
-                .map(product -> {
-                    ProductDTO dto = modelMapper.map(product, ProductDTO.class);
-                    return dto;
+                .map(material -> {
+                    return modelMapper.map(material, MaterialDTO.class);
                 }).collect(Collectors.toList());
     }
 }

@@ -1,9 +1,6 @@
 package com.example.vinasoy.entity.warehouse;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +14,10 @@ public class Materialwarehouse {
     @Size(max = 10)
     @Column(name = "MaterialWarehouseID", nullable = false, length = 10)
     private String materialWarehouseID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MaterialID")
+    private Material materialID;
 
     @Column(name = "Quantity")
     private Integer quantity;
