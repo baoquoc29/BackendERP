@@ -1,9 +1,9 @@
-package com.example.vinasoy.dto.warehouse;
+package com.example.vinasoy.dto.warehouse.MaterialWarehouse;
 
 import lombok.Data;
 
 @Data
-public class MaterialwarehouseDTO {
+public class MaterialWarehouseRequestDTO {
     private String materialWarehouseId;
     private String materialId;
     private Integer quantity;

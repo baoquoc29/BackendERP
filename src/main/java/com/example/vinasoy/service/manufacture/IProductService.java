@@ -1,4 +1,4 @@
-package com.example.vinasoy.service.manufacture.impl;
+package com.example.vinasoy.service.manufacture;
 
 import com.example.vinasoy.dto.manufacture.ProductDTO;
 
