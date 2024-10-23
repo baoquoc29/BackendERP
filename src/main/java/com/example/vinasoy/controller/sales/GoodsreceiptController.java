@@ -59,4 +59,15 @@ public class GoodsreceiptController {
         apiResponse.setData("Xoa thanh cong");
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
+
+    @GetMapping("/page")
+    public ResponseEntity<?> findAllCustomer(
+            @RequestParam(defaultValue = "5", required = false) final Integer pageSize,
+            @RequestParam(defaultValue = "0", required = false) final Integer pageNo,
+            @RequestParam(defaultValue = "id", required = false) final String... sortBy) {
+        PageResponse<?> goodReceiptPageResponse = goodsreceiptService.findAllPaginationWithSortByMultipleColumns(pageSize, pageNo, sortBy);
+        ApiResponse<PageResponse<?>> apiResponse = new ApiResponse<>();
+        apiResponse.setData(goodReceiptPageResponse);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
 }

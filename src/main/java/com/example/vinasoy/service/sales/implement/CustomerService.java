@@ -141,20 +141,20 @@ public class CustomerService implements ICustomerService {
             List<Predicate> predicates = new ArrayList<>();
 
             if (customerId != null && !customerId.trim().isEmpty()) {
-                predicates.add(cb.like(cb.lower(root.get("customerId")),
-                        "%" + escapeSpecialCharacters(customerId.toLowerCase().trim()) + "%"));
+                predicates.add(cb.equal(cb.lower(root.get("customerID")),
+                        escapeSpecialCharacters(customerId.toLowerCase().trim())));
             }
             if (fullName != null && !fullName.trim().isEmpty()) {
                 predicates.add(cb.like(cb.lower(root.get("fullName")),
                         "%" + escapeSpecialCharacters(fullName.toLowerCase().trim()) + "%"));
             }
             if (email != null && !email.trim().isEmpty()) {
-                predicates.add(cb.like(cb.lower(root.get("email")),
-                        "%" + escapeSpecialCharacters(email.toLowerCase().trim()) + "%"));
+                predicates.add(cb.equal(cb.lower(root.get("email")),
+                         escapeSpecialCharacters(email.toLowerCase().trim())));
             }
             if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
-                predicates.add(cb.like(root.get("phoneNumber"),
-                        "%" + escapeSpecialCharacters(phoneNumber.trim()) + "%"));
+                predicates.add(cb.equal(root.get("phoneNumber"),
+                         escapeSpecialCharacters(phoneNumber.trim())));
             }
             if (address != null && !address.trim().isEmpty()) {
                 predicates.add(cb.like(cb.lower(root.get("address")),

@@ -1,5 +1,6 @@
 package com.example.vinasoy.service.sales.implement;
 
+import com.example.vinasoy.controller.sales.PageResponse;
 import com.example.vinasoy.dto.employee.EmployeeDTO;
 import com.example.vinasoy.dto.manufacture.ProductDTO;
 import com.example.vinasoy.dto.sales.CustomerDTO;
@@ -17,9 +18,16 @@ import com.example.vinasoy.repository.sales.IOrderDetailRespository;
 import com.example.vinasoy.service.sales.IOrderDetailServce;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -115,5 +123,47 @@ public class OrderDetailService implements IOrderDetailServce {
         orderdetailsDTO.setOrderId(orderdetail.getOrder().getOrderID());
         orderdetailsDTO.setProductId(orderdetail.getProduct().getProductId());
         return orderdetailsDTO;
+    }
+
+    public PageResponse<?> findAllPaginationWithSortByMultipleColumns(final Integer pageSize, final Integer pageNo, final String... sorts) {
+        List<Sort.Order> orders = new ArrayList<>();
+
+        for (String sortBy: sorts) {
+            //firstName:asc|desc
+            Pattern pattern = Pattern.compile("(\\w+?)(:)(\\w+?)");
+            Matcher matcher = pattern.matcher(sortBy);
+            if (matcher.find()) {
+                if (matcher.group(3).equalsIgnoreCase("asc")) {
+                    orders.add(new Sort.Order(Sort.Direction.ASC, matcher.group(1)));
+                } else {
+                    orders.add(new Sort.Order(Sort.Direction.DESC, matcher.group(1)));
+                }
+            }
+        }
+
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(orders));
+
+        Page<Orderdetail> orderDetails = orderDetailRespository.findAll(pageable);
+
+        List<OrderdetailsDTO> orderDetailsDTOs = orderDetails.stream()
+                .map(orderDetail -> {
+                    OrderdetailsDTO orderdetailsDTO = modelMapper.map(orderDetail, OrderdetailsDTO.class);
+
+                    OrderDTO orderDTO = modelMapper.map(orderDetail.getOrder(), OrderDTO.class);
+                    orderdetailsDTO.setOrderId(orderDTO.getOrderId());
+
+                    ProductDTO productDTO  = modelMapper.map(orderDetail.getProduct(), ProductDTO.class);
+                    orderdetailsDTO.setProductId(productDTO.getProductId());
+
+                    return orderdetailsDTO;
+                }).collect(Collectors.toList());
+
+        return PageResponse.builder()
+                .pageNo(pageNo)
+                .pageSize(pageSize)
+                .totalPage(orderDetails.getTotalPages())
+                .totalElements(orderDetails.getTotalElements())
+                .items(orderDetailsDTOs)
+                .build();
     }
 }

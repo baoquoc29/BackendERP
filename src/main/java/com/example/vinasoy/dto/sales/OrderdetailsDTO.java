@@ -3,6 +3,7 @@ package com.example.vinasoy.dto.sales;
 import lombok.Data;
 
 import java.math.BigDecimal;
+
 @Data
 public class OrderdetailsDTO {
     private String orderDetailId;
@@ -53,10 +54,6 @@ public class OrderdetailsDTO {
     }
 
     public BigDecimal getTotalPrice() {
-        return this.totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
+        return unitPrice.multiply(BigDecimal.valueOf(quantity));
     }
 }
