@@ -1,5 +1,7 @@
-package com.example.vinasoy.entity.employee;
+package com.example.vinasoy.entity.income;
 
+import com.example.vinasoy.entity.employee.Employee;
+import com.example.vinasoy.entity.sales.Invoice;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -21,6 +23,10 @@ public class Revenue {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EmployeeID")
     private Employee employeeID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "InvoiceID")
+    private Invoice invoiceID;
 
     @Size(max = 255)
     @Column(name = "RevenueName")
