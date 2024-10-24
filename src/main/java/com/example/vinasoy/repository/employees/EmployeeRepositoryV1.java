@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
+public interface EmployeeRepositoryV1 extends JpaRepository<Employee, String> {
     @Query("SELECT e.contractID FROM Employee e WHERE e.employeeID = :employeeID")
     Contract findContractByEmployeeID(String employeeID);
 
