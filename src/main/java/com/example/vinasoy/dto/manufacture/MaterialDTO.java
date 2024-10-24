@@ -1,5 +1,6 @@
 package com.example.vinasoy.dto.warehouse;
 
+import com.example.vinasoy.dto.warehouse.MaterialWarehouse.MaterialCategoryResponseDTO;
 import lombok.Data;
 
 @Data
