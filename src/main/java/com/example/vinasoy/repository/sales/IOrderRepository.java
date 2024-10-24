@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface IOrderRepository extends JpaRepository<Order, String> {
     @Query(value = "SELECT o.OrderID FROM Orders o ORDER BY o.OrderID DESC LIMIT 1", nativeQuery = true)
     String findMaxOrderCode();
+
 }
