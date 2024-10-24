@@ -1,5 +1,7 @@
-package com.example.vinasoy.dto.warehouse;
+package com.example.vinasoy.dto.manufacture;
 
+import com.example.vinasoy.dto.warehouse.MaterialWarehouse.MaterialCategoryResponseDTO;
+import com.example.vinasoy.entity.warehouse.Materialcategory;
 import lombok.Data;
 
 @Data

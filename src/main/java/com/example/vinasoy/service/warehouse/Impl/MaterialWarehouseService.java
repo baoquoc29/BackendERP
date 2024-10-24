@@ -1,6 +1,8 @@
 package com.example.vinasoy.service.warehouse.Impl;
 
-import com.example.vinasoy.dto.warehouse.MaterialDTO;
+import com.example.vinasoy.dto.manufacture.MaterialDTO;
+import com.example.vinasoy.dto.manufacture.MaterialResponseDTO;
+import com.example.vinasoy.dto.warehouse.MaterialWarehouse.MaterialCategoryResponseDTO;
 import com.example.vinasoy.dto.warehouse.MaterialWarehouse.MaterialWarehouseRequestDTO;
 import com.example.vinasoy.dto.warehouse.MaterialWarehouse.MaterialWarehouseResponseDTO;
 import com.example.vinasoy.entity.warehouse.Material;
@@ -32,7 +34,7 @@ public class MaterialWarehouseService implements IMaterialWarehouseService {
                     MaterialWarehouseResponseDTO dto = modelMapper.map(materialwarehouse, MaterialWarehouseResponseDTO.class);
                     Material material = materialwarehouse.getMaterialID();
                     if (material != null) {
-                        MaterialDTO materialDTO = modelMapper.map(material, MaterialDTO.class);
+                        MaterialResponseDTO materialDTO = modelMapper.map(material, MaterialResponseDTO.class);
                         dto.setMaterialDTO(materialDTO);
                     }
                     return dto;
@@ -47,7 +49,7 @@ public class MaterialWarehouseService implements IMaterialWarehouseService {
         MaterialWarehouseResponseDTO dto = modelMapper.map(materialwarehouse, MaterialWarehouseResponseDTO.class);
         Material material = materialwarehouse.getMaterialID();
         if (material != null) {
-            MaterialDTO materialDTO = modelMapper.map(material, MaterialDTO.class);
+            MaterialResponseDTO materialDTO = modelMapper.map(material, MaterialResponseDTO.class);
             dto.setMaterialDTO(materialDTO);
         }
         return dto;
