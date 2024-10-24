@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeRepositoryV1 employeeRepositoryV1;
+    private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
     private final PositionsRepository positionsRepository;
     private final DepartmentRepository departmentRepository;
@@ -27,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeResponseDTO> getAllInfoEmployee() {
-        List<Employee> employees = employeeRepositoryV1.findAll();
+        List<Employee> employees = employeeRepository.findAll();
         if (employees.isEmpty()) {
             throw new AppException(ErrorCode.NOT_FOUND);
         }
@@ -49,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponseDTO getEmployeeById(String id) {
-        Employee employee = employeeRepositoryV1.findById(id)
+        Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
         EmployeeResponseDTO dto = modelMapper.map(employee, EmployeeResponseDTO.class);
         PositionResponseDTO positionDto = modelMapper.map(employee.getPositionID(), PositionResponseDTO.class);
@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponseDTO updateEmployee(EmployeeRequestDTO updateDTO) {
-        Employee employee = employeeRepositoryV1.findById(updateDTO.getEmployeeID())
+        Employee employee = employeeRepository.findById(updateDTO.getEmployeeID())
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
         modelMapper.map(updateDTO, employee);
 
@@ -78,7 +78,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
             employee.setDepartmentID(department);
         }
-        employeeRepositoryV1.save(employee);
+        employeeRepository.save(employee);
         return modelMapper.map(employee, EmployeeResponseDTO.class);
     }
 
@@ -108,14 +108,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDepartmentID(department);
         employee.setContractID(contract);
 
-        Employee savedEmployee = employeeRepositoryV1.save(employee);
+        Employee savedEmployee = employeeRepository.save(employee);
 
         return modelMapper.map(savedEmployee, EmployeeResponseDTO.class);
     }
 
     @Override
     public List<EmployeeResponseDTO> searchEmployees(String keywords) {
-        List<Employee> employees = employeeRepositoryV1.findByEmployeeNameContainingIgnoreCaseOrEmployeeIDContainingIgnoreCase(keywords, keywords);
+        List<Employee> employees = employeeRepository.findByEmployeeNameContainingIgnoreCaseOrEmployeeIDContainingIgnoreCase(keywords, keywords);
         return employees.stream().map(employee -> {
             EmployeeResponseDTO dto = modelMapper.map(employee, EmployeeResponseDTO.class);
             if (employee.getPositionID() != null) {
@@ -133,7 +133,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     private String generateEmployeeId() {
-        return employeeRepositoryV1.findAll()
+        return employeeRepository.findAll()
                 .stream()
                 .map(Employee::getEmployeeID)
                 .max(String::compareTo)

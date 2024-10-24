@@ -43,6 +43,30 @@ public class Invoice {
     @JsonBackReference
     private Employee employee;
 
+    @OneToMany(
+            mappedBy = "invoice",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
+    @JsonManagedReference
+    private Set<Invoicedetails> invoicedetails = new HashSet<>();
+
+
+    public void addInvoice(Invoicedetails invoicedetail) {
+        if(invoicedetail != null) {
+            invoicedetails.add(invoicedetail);
+            invoicedetail.setInvoice(this);
+        }
+    }
+
+    public void removeInvoicce(Invoicedetails invoicedetail) {
+        if(order != null) {
+            invoicedetails.remove(invoicedetail);
+            invoicedetail.setInvoice(null);
+        }
+    }
+
 
     @Override
     public String toString() {

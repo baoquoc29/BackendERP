@@ -11,5 +11,4 @@ public class GoodsreceiptnotedetailDTO {
     private LocalDate dateOfManufacture;
     private String note;
 
-
 }

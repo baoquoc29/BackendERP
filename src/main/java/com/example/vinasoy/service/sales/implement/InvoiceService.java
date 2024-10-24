@@ -10,7 +10,7 @@ import com.example.vinasoy.entity.sales.Invoice;
 import com.example.vinasoy.entity.sales.Order;
 import com.example.vinasoy.exception.AppException;
 import com.example.vinasoy.exception.ErrorCode;
-import com.example.vinasoy.repository.employee.EmployeeRepository;
+import com.example.vinasoy.repository.employees.EmployeeRepository;
 import com.example.vinasoy.repository.sales.IInvoiceRepository;
 import com.example.vinasoy.service.sales.IInvoiceService;
 import lombok.AllArgsConstructor;
@@ -62,7 +62,6 @@ public class InvoiceService implements IInvoiceService {
                     return invoiceDTO;
                 }).collect(Collectors.toList());
     }
-
 
     @Override
     @Transactional

@@ -12,5 +12,4 @@ public class GoodsissuenotedetailDTO {
     private String gindStatus;
     private String note;
 
-
 }

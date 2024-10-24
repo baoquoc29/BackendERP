@@ -20,7 +20,7 @@ public class InvoiceController {
     private final InvoiceService invoiceService;
 
     @GetMapping
-    public ResponseEntity<?> findAllOrder() {
+    public ResponseEntity<?> findAllInvoice() {
         List<InvoiceDTO> invoices = invoiceService.findAllInvoice();
         ApiResponse<List<InvoiceDTO>> apiResponse = new ApiResponse<>();
         apiResponse.setData(invoices);
@@ -28,7 +28,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findOrderById(@PathVariable("id") String id) {
+    public ResponseEntity<?> findInvoiceById(@PathVariable("id") String id) {
         InvoiceDTO invoiceDTO = invoiceService.findInvoiceById(id.toUpperCase());
         ApiResponse<InvoiceDTO> apiResponse = new ApiResponse<>();
         apiResponse.setData(invoiceDTO);
@@ -36,7 +36,7 @@ public class InvoiceController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addOrder(@RequestBody @Valid InvoiceDTO invoiceRequest) {
+    public ResponseEntity<?> addInvoice(@RequestBody @Valid InvoiceDTO invoiceRequest) {
         InvoiceDTO invoiceResponse = invoiceService.addInvoice(invoiceRequest);
         ApiResponse<InvoiceDTO> apiResponse = new ApiResponse<>();
         apiResponse.setData(invoiceResponse);
@@ -44,7 +44,7 @@ public class InvoiceController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateOrder(@PathVariable("id") String invoiceId, @RequestBody @Valid InvoiceDTO invoiceDTO) {
+    public ResponseEntity<?> updateInvoice(@PathVariable("id") String invoiceId, @RequestBody @Valid InvoiceDTO invoiceDTO) {
         InvoiceDTO invoiceResponse = invoiceService.updateInvoice(invoiceId.toUpperCase(), invoiceDTO);
         ApiResponse<InvoiceDTO> apiResponse = new ApiResponse<>();
         apiResponse.setData(invoiceResponse);
@@ -52,7 +52,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteOrder(@PathVariable("id") String inoviceId) {
+    public ResponseEntity<?> deleteInvoice(@PathVariable("id") String inoviceId) {
         invoiceService.deleteInvoice(inoviceId.toUpperCase());
         ApiResponse<String> apiResponse = new ApiResponse<>();
         apiResponse.setData("Xoa thanh cong");
