@@ -3,16 +3,10 @@ import com.example.vinasoy.dto.employee.PositionDTO.PositionResponseDTO;
 import com.example.vinasoy.dto.employee.departmentDTO.DepartmentResponseDTO;
 import com.example.vinasoy.dto.employee.employeeDTO.EmployeeRequestDTO;
 import com.example.vinasoy.dto.employee.employeeDTO.EmployeeResponseDTO;
-import com.example.vinasoy.entity.employee.Contract;
-import com.example.vinasoy.entity.employee.Department;
-import com.example.vinasoy.entity.employee.Employee;
-import com.example.vinasoy.entity.employee.Position;
+import com.example.vinasoy.entity.employee.*;
 import com.example.vinasoy.exception.AppException;
 import com.example.vinasoy.exception.ErrorCode;
-import com.example.vinasoy.repository.employees.ContractRepository;
-import com.example.vinasoy.repository.employees.DepartmentRepository;
-import com.example.vinasoy.repository.employees.EmployeeRepository;
-import com.example.vinasoy.repository.employees.PositionsRepository;
+import com.example.vinasoy.repository.employees.*;
 import com.example.vinasoy.service.employees.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final PositionsRepository positionsRepository;
     private final DepartmentRepository departmentRepository;
     private final ContractRepository contractRepository;
+     private final RewarddisciplineRepository rewarddisciplineRepository;
 
     @Override
     public List<EmployeeResponseDTO> getAllInfoEmployee() {
@@ -134,6 +129,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return dto;
         }).collect(Collectors.toList());
     }
+
 
 
     private String generateEmployeeId() {

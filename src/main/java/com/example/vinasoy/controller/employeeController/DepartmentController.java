@@ -1,6 +1,7 @@
 package com.example.vinasoy.controller.employeeController;
 
 import com.example.vinasoy.dto.employee.DepartmentDTO;
+import com.example.vinasoy.dto.employee.departmentDTO.DepartmentResponseDTO;
 import com.example.vinasoy.response.ApiResponse;
 import com.example.vinasoy.service.employees.DepartmentService;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import java.util.List;
 public class DepartmentController {
 
     private final DepartmentService departmentService;
-
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
@@ -60,6 +60,14 @@ public class DepartmentController {
         departmentService.deleteDepartment(id);
         ApiResponse<String> apiResponse = new ApiResponse<>();
         apiResponse.setResult("Department deleted successfully.");
+        apiResponse.setCode(HttpStatus.OK.value());
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<?> searchDepartments(@RequestParam String search) {
+        List<DepartmentResponseDTO> departments = departmentService.searchDepartments(search);
+        ApiResponse<List<DepartmentResponseDTO>> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(departments);
         apiResponse.setCode(HttpStatus.OK.value());
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }

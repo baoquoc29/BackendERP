@@ -66,4 +66,14 @@ public class RewardDisciplineController {
         apiResponse.setCode(HttpStatus.OK.value());
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
+
+    @GetMapping("/employee/{employeeId}")
+    public ResponseEntity<?> getRewardDisciplinesByEmployeeId(@PathVariable String employeeId) {
+        List<RewardDisciplineResponseDTO> rewardDisciplines = rewarddisciplineService.findRewardDisciplineByEmployeeId(employeeId);
+        ApiResponse<List<RewardDisciplineResponseDTO>> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(rewardDisciplines);
+        apiResponse.setCode(HttpStatus.OK.value());
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
 }

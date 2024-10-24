@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -127,6 +128,23 @@ public class RewarddisciplineServiceImpl implements RewarddisciplineService {
                 })
                 .orElse("Số-01"); // Nếu không có nhân viên nào, bắt đầu từ EMP-0001
     }
+
+    public List<RewardDisciplineResponseDTO> findRewardDisciplineByEmployeeId(String employeeId) {
+        List<Rewarddiscipline> rewardDisciplineList = rewardDisciplineRepository.findByEmployeeID_EmployeeID(employeeId);
+
+        if (rewardDisciplineList.isEmpty()) {
+            return new ArrayList<RewardDisciplineResponseDTO>();
+        }
+        return rewardDisciplineList.stream()
+                .map(rewardDiscipline -> {
+                    RewardDisciplineResponseDTO rewardDisciplineResponseDTO = modelMapper.map(rewardDiscipline, RewardDisciplineResponseDTO.class);
+                    EmployeeResponseDTO employeeResponseDTO = modelMapper.map(rewardDiscipline.getEmployeeID(), EmployeeResponseDTO.class);
+                    rewardDisciplineResponseDTO.setEmployeeResponseDTO(employeeResponseDTO);
+                    return rewardDisciplineResponseDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
 
 
 }
