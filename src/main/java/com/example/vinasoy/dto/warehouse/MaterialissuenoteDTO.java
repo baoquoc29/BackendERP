@@ -10,5 +10,4 @@ public class MaterialissuenoteDTO {
     private LocalDate dateOfIssue;
     private String note;
 
-
 }

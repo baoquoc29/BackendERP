@@ -8,4 +8,5 @@ public class MaterialcategoryDTO {
     private String materialCategoryName;
     private String note;
 
+
 }

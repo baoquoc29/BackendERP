@@ -9,5 +9,4 @@ public class MaterialissuenotedetailDTO {
     private Integer quantity;
     private String mIsNStatus;
     private String note;
-
 }
