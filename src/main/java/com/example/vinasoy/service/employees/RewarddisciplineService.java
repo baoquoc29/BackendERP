@@ -11,4 +11,5 @@ public interface RewarddisciplineService {
     public RewardDisciplineResponseDTO getRewardDisciplineById(String id);
     public RewardDisciplineResponseDTO updateRewardDiscipline(RewardDisciplineRequestDTO rewardDisciplineRequestDTO);
     public void deleteRewardDiscipline(String id);
+    public List<RewardDisciplineResponseDTO> findRewardDisciplineByEmployeeId(String employeeId);
 }

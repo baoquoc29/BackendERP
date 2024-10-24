@@ -1,6 +1,7 @@
 package com.example.vinasoy.service.employeeServiceImplement;
 
 import com.example.vinasoy.dto.employee.DepartmentDTO;
+import com.example.vinasoy.dto.employee.departmentDTO.DepartmentResponseDTO;
 import com.example.vinasoy.entity.employee.Department;
 import com.example.vinasoy.entity.employee.Employee;
 import com.example.vinasoy.exception.AppException;
@@ -65,6 +66,14 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department department = departmentRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND));
         departmentRepository.delete(department);
+    }
+
+    @Override
+    public List<DepartmentResponseDTO> searchDepartments(String searchKeywords) {
+        return departmentRepository.findByDepartmentIDContainingOrNameDepartmentContaining(searchKeywords, searchKeywords)
+                .stream()
+                .map(department -> modelMapper.map(department, DepartmentResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
     private String generateDepartmentId() {

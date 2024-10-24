@@ -9,4 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RewarddisciplineRepository extends JpaRepository<Rewarddiscipline,String> {
+    List<Rewarddiscipline> findByEmployeeID_EmployeeID(String employeeID);
 }
