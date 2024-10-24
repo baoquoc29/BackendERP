@@ -21,15 +21,15 @@ public class CustomerController {
     public ResponseEntity<?> searchCustomers(
             @RequestParam(defaultValue = "10", required = false) Integer pageSize,
             @RequestParam(defaultValue = "0", required = false) Integer pageNo,
-            @RequestParam(required = false) String customerId,
+            @RequestParam(required = false) String customerID,
             @RequestParam(required = false) String fullName,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String phoneNumber,
             @RequestParam(required = false) String address,
-            @RequestParam(defaultValue = "customerId,asc", required = false) String... sort) {
+            @RequestParam(defaultValue = "customerID,asc", required = false) String... sort) {
 
         PageResponse<?> result = customerService.searchCustomers(
-                pageSize, pageNo, customerId, fullName, email, phoneNumber, address, sort);
+                pageSize, pageNo, customerID, fullName, email, phoneNumber, address, sort);
         ApiResponse<PageResponse<?>> apiResponse = new ApiResponse<>();
         apiResponse.setData(result);
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
